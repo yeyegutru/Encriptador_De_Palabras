@@ -1,0 +1,10 @@
+:root{
+    --color-Principal:black;
+}
+
+*{
+padding: 0;
+margin: 0;
+background-color: var(--color-Principal);
+color: aliceblue;
+}
