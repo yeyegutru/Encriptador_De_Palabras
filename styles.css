@@ -6,58 +6,85 @@
   --color-parrafos: #495057;
   --color-btn-one: #0a3871;
   --color-btn-two: #d8dfe8;
+  --value-width: 1440;
+  --value-height: 1024;
+}
+/* Estilos Iniciales  */
+body, html {
+  background: var(--color-backgrount);
+  overflow: hidden; 
 }
 
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
   color: var(--color-principal-fonts);
   font: "Inter", sans-serif;
   font-weight: 400;
 }
-body {
-    background: var(--color-backgrount);
-  box-sizing: border-box;
-  height: 100%;
+
+p {
+  color: var(--color-parrafos);
 }
-p{
-    color: var(--color-parrafos);
-}
+
 .container {
   display: flex;
   flex-direction: row;
   height: 100%;
+  width: 100%;
 }
 
-.cabecera-logo {
-  font-size: 60px;
-  height: 60px;
+
+/* Estilos a las imagenes */
+img{
+  box-sizing: border-box;
 }
-.container-init-traductor {
+
+.logo {
+width: 120px;
+height: 48px;
+margin: 40px;
+}
+
+.logo-second{
+  width: 336px;
+  height: 304px;
+}
+
+/* estilos para los contenedores */
+.container-text-button {
+  margin-left: 240px;
   width: 680px;
 }
 .container-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 12px 0 12px 80px;
   width: 400px;
-  box-shadow:0 24px 32px -8px white;
+  height: 944px;
+  box-shadow: 0 24px 32px -8px white;
   border-radius: 32px;
   background: white;
 }
+.container-buttons{
+  margin-top: 16px;
+}
 
+/* estilos text area  */
 .text-area {
-
-  font: "Inter", sans-serif;
   font-size: 32px;
-  height: 400px;
-  width: 90%;
   border: none;
 }
-.area-one{
-    background: var(--color-backgrount);
+.area-one {
+  background: var(--color-backgrount);
+  height: 680px;
+  width: 680px;
 }
 
-.area-two{
-
-}
 
 .text-area::placeholder {
   font: "Inter", sans-serif;
@@ -65,8 +92,21 @@ p{
   color: var(--color-btn-one);
 }
 
+.text-result{
+  font: 24px;
+  font-weight: bold;
+  color: var(--color-parrafos);
+}
+
+.texto-resp{
+  font: 16px;
+}
+
+.section-result{
+  width: 336px;
+}
 .btn {
-    font-size: 12px;
+  font-size: 12px;
   width: 328px;
   height: 67px;
   border-radius: 24px;
@@ -80,9 +120,8 @@ p{
 .btn-desencriptar {
   background: var(--color-btn-two);
   color: var(--color-btn-one);
-  
 }
 
-.icon-gris{
-    color: var(--color-parrafos);
+.icon-gris {
+  color: var(--color-parrafos);
 }
