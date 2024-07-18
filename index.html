@@ -20,13 +20,13 @@
             <img src="Img/Logo.png" alt="Representacion Logo Empresa" class="logo">
             <div class="container-text-button">
                 <textarea name="text-encrypt" id="text-encrypt" class="text-area area-one"
-                    placeholder="Ingrese el texto aqui"></textarea>
+                    placeholder="Ingrese el texto aqui" onkeypress="checkearText(event)"></textarea>
                 <p><i class="fas fa-exclamation-triangle icon-gris"></i>Solo letras minúsculas y sin acentos</p>
                 <div class="container-buttons">
-                    <button class="btn btn-encriptar" id="encriptar">
+                    <button class="btn btn-encriptar" id="encriptar" onclick="encriptacion(event)">
                         Encriptar
                     </button>
-                    <button class="btn btn-desencriptar" id="desencriptar">
+                    <button class="btn btn-desencriptar" id="desencriptar" onclick="desencriptar(event)">
                         Desencriptar
                     </button>
                 </div>

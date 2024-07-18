@@ -1,104 +1,88 @@
-// declaracion de variables Inciales 
+// declaracion de variables Inciales
 var texto_entrada = document.getElementById("text-encrypt");
-var btn_encriptar=document.querySelector(".btn-encriptar");
-var btn_desencriptar=document.querySelector(".btn-desencriptar");
-var img=document.querySelector(".logo-second");
-var output= document.getElementById("p_output");
+var btn_encriptar = document.querySelector(".btn-encriptar");
+var btn_desencriptar = document.querySelector(".btn-desencriptar");
+var img = document.querySelector(".logo-second");
+var output = document.getElementById("p_output");
 
-// !Pruebas de Btns
-// console.log(btn_encriptar);
-// console.log(btn_desencriptar);
-// console.log(img);
-// console.log(output);
-// console.log(texto_entrada);
+// valores 
+let values_encriptar = ["ai", "enter", "imes", "ober", "ufat"];
+let keys_desencriptar = ["a", "e", "i", "o", "u"];
 
-function validar(textoValidar) {
-    // Función de validación existente, mantenerla si es adecuada para tu caso
-    // Puedes modificarla según tus requisitos de validación
-    const letras = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    var conteo = 0;
 
-    for (var posicion = 0; posicion < textoValidar.length; posicion++) {
-        for (var letra = 0; letra < letras.length; letra++) {
-            if (textoValidar.charAt(posicion) == letras[letra]) {
-                conteo++;
-            }
-        }
+// Mapa de desencriptación
+let mapaDesencriptacion = {
+    "ai": "a",
+    "enter": "e",
+    "imes": "i",
+    "ober": "o",
+    "ufat": "u"
+};
+
+// funcion para solo letras minusculas y sin acento
+function checkearText(evt) {
+  var charCode = evt.charCode;
+  console.log(charCode);
+  if (charCode != 0) {
+    if (
+      charCode != 32 &&
+      charCode != 241 &&
+      (charCode < 97 || charCode > 122)
+    ) {
+      console.log(charCode);
+      evt.preventDefault();
+      alert("Por favor usa sólo letras minúsculas y sin acentos.");
     }
-    if (conteo == 0) {
-        return true;
-    }
-    return false;
+  }
 }
 
-function encriptar() {
-    var texto = entradaTexto.value;
-    var salida = "";
 
-    // Validación básica del texto
-    if (texto.trim() === "") {
-        alert("Ingrese un texto para encriptar.");
-        return;
-    }
-
-    // Convertir cada carácter a su representación binaria
+// funcion de encriptacion
+function encriptacion(evt) {
+  // quitar recarga de pagina por el evento de click
+  evt.preventDefault();
+  //   obtener el texto
+  var texto = texto_entrada.value;
+  //   inicializar variables y values a encriptar
+  let cadena = "";
+  
+  if (texto.trim().length != 0) {
     for (var i = 0; i < texto.length; i++) {
-        var charCode = texto.charCodeAt(i);
-        var binary = charCode.toString(2); // Convertir a binario
-
-        salida += binary + " "; // Separar cada binario por un espacio
+      switch (texto.charAt(i)) {
+        case "a":
+          cadena += values_encriptar[0];
+          break;
+        case "e":
+          cadena += values_encriptar[1];
+          break;
+        case "i":
+          cadena += values_encriptar[2];
+          break;
+        case "o":
+          cadena += values_encriptar[3];
+          break;
+        case "o":
+          cadena += values_encriptar[4];
+          break;
+        default:
+          cadena += texto.charAt(i);
+      }
     }
-
-    entradaTexto.value = "";
-    salidaTexto.value = salida.trim(); // Mostrar salida sin espacio extra al final
-    ocultar();
+    console.log(cadena);
+  }else{
+    alert("Por favor ingresa un texto para encriptar")
+  }
 }
 
-function desencriptar() {
-    var texto = entradaTexto.value.trim();
-    var binarios = texto.split(" "); // Separar binarios por espacio
-
-    var salida = "";
-
-    // Convertir cada binario a su caracter correspondiente
-    for (var i = 0; i < binarios.length; i++) {
-        if (binarios[i] !== "") {
-            var decimal = parseInt(binarios[i], 2); // Convertir binario a decimal
-            var caracter = String.fromCharCode(decimal); // Obtener el caracter
-
-            salida += caracter;
-        }
+function desencriptar(evnt){
+    evnt.preventDefault();
+    var texto = texto_entrada.value;
+    let patrones = new RegExp(values_encriptar.join('|'),'g');
+    console.log(des(texto))
+    function des (texto){
+        return texto.replace(patrones, function(coin){
+            return mapaDesencriptacion[coin];
+        })
     }
-
-    entradaTexto.value = "";
-    salidaTexto.value = salida;
-    ocultar();
-}
-
-function ocultar() {
-    salidaTexto.style.background = "white";
-    seccionTexto1.style.display = "none";
-    seccionTexto2.style.display = "none";
-    btnCopiar.style.display = "";
-}
-
-function mostrar() {
-    salidaTexto.style.background = "#FFF no-repeat center url(imagenes/notexto.png)";
-    seccionTexto1.style.display = "";
-    seccionTexto2.style.display = "";
-    btnCopiar.style.display = "none";
-}
-
-function copiar() {
-    var copia = salidaTexto.value;
-    navigator.clipboard.writeText(copia);
-
-    var anuncio = document.querySelector(".anuncio");
-    anuncio.textContent = "Texto copiado";
-    anuncio.style.display = "block";
-    setTimeout(() => {
-        anuncio.style.display = "none";
-        salidaTexto.value = "";
-        mostrar();
-    }, 950);
+    
 }
