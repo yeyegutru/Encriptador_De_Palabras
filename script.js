@@ -3,20 +3,21 @@ var texto_entrada = document.getElementById("text-encrypt");
 var btn_encriptar = document.querySelector(".btn-encriptar");
 var btn_desencriptar = document.querySelector(".btn-desencriptar");
 var img = document.querySelector(".logo-second");
-var output = document.getElementById("p_output");
+var section_traduct = document.querySelector(".section-button");
+var section_result = document.querySelector(".section-result");
+var output = document.querySelector(".texto-traduct");
 
-// valores 
+// valores
 let values_encriptar = ["ai", "enter", "imes", "ober", "ufat"];
 let keys_desencriptar = ["a", "e", "i", "o", "u"];
 
-
 // Mapa de desencriptación
 let mapaDesencriptacion = {
-    "ai": "a",
-    "enter": "e",
-    "imes": "i",
-    "ober": "o",
-    "ufat": "u"
+  ai: "a",
+  enter: "e",
+  imes: "i",
+  ober: "o",
+  ufat: "u",
 };
 
 // funcion para solo letras minusculas y sin acento
@@ -36,16 +37,23 @@ function checkearText(evt) {
   }
 }
 
+// funcion para ver sections
+function mostrarEncriptacion() {
+  //variables
+  section_traduct.classList.remove("ocultar");
+  section_result.classList.add("ocultar");
+  console.log(section_result);
+}
 
-// funcion de encriptacion
+// funcion de encriptacion normal pero lenta
 function encriptacion(evt) {
   // quitar recarga de pagina por el evento de click
   evt.preventDefault();
   //   obtener el texto
   var texto = texto_entrada.value;
   //   inicializar variables y values a encriptar
-  let cadena = "";
-  
+  var cadena = "";
+
   if (texto.trim().length != 0) {
     for (var i = 0; i < texto.length; i++) {
       switch (texto.charAt(i)) {
@@ -68,21 +76,35 @@ function encriptacion(evt) {
           cadena += texto.charAt(i);
       }
     }
-    console.log(cadena);
-  }else{
-    alert("Por favor ingresa un texto para encriptar")
+    mostrarEncriptacion();
+    output.textContent = cadena;
+  } else {
+    alert("Por favor ingresa un texto para encriptar");
   }
 }
 
-function desencriptar(evnt){
-    evnt.preventDefault();
-    var texto = texto_entrada.value;
-    let patrones = new RegExp(values_encriptar.join('|'),'g');
-    console.log(des(texto))
-    function des (texto){
-        return texto.replace(patrones, function(coin){
-            return mapaDesencriptacion[coin];
-        })
+// funcion de desenciptacion rapida
+function desencriptar(evnt) {
+  evnt.preventDefault();
+  var texto = texto_entrada.value;
+  let patrones = new RegExp(values_encriptar.join("|"), "g");
+  function des(texto) {
+    return texto.replace(patrones, function (coin) {
+      return mapaDesencriptacion[coin];
+    });
+  }
+  output.textContent = des(texto);
+}
+
+function copiar_texto() {
+  var texto = output.textContent;
+  navigator.clipboard.writeText(texto).then(
+    function () {
+      alert("Texto copiado");
+    },
+    function (err) {
+      // Error
+      console.error("Error al copiar el texto: ", err);
     }
-    
+  );
 }

@@ -13,12 +13,15 @@
 body,
 html {
   background: var(--color-backgrount);
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 * {
   box-sizing: border-box;
   color: var(--color-principal-fonts);
-  font: "Inter", sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
 }
 
@@ -32,7 +35,8 @@ p {
   display: flex;
   flex-direction: row;
   width: 1440px;
-  height: auto;
+  height: 1024px;
+  justify-content: center;
 }
 
 .container-text-button {
@@ -40,15 +44,16 @@ p {
   width: 680px;
 }
 .container-result {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 40px 0 40px 80px;
+  margin: 40px;
   width: 400px;
   height: 944px;
-  box-shadow: 0 24px 32px -8px white;
+  box-shadow: 0 24px 32px -8px rgba(0, 0, 0, 0.1);
   border-radius: 32px;
   background: white;
 }
@@ -57,6 +62,7 @@ p {
   justify-content: space-between;
   margin-top: 16px;
 }
+
 
 /* Estilos a las imagenes */
 img {
@@ -81,35 +87,50 @@ img {
 }
 .area-one {
   background: var(--color-backgrount);
-  height: 680px;
+  height: 720px;
   width: 680px;
 }
 
 .text-area::placeholder {
-  font: "Inter", sans-serif;
   font-size: 32px;
   color: var(--color-btn-one);
 }
 
 .text-result {
-  font: 24px;
+  font-size: 24px;
   font-weight: bold;
   color: var(--color-parrafos);
 }
 
-.texto-resp {
-  font: 16px;
-}
 
 .section-result {
   width: 336px;
+  margin: 32px;
 }
+
+.section-button{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+.result{
+  flex: 1;
+  margin: 32px;
+  text-align: start;
+}
+.ocultar{
+  display: none;
+}
+
 .btn {
-  font-size: 12px;
+  font-size: 16px;
   width: 48%;
   height: 67px;
   border-radius: 24px;
   border: 1px solid var(--color-btn-one);
+  cursor: pointer;
 }
 
 .btn-encriptar {
@@ -121,10 +142,23 @@ img {
   color: var(--color-btn-one);
 }
 
+.btn-copiar{
+  margin-top: auto;
+  background: white;
+  width: 80%;
+  margin: 32px auto;
+}
+
 .icon-gris {
   color: var(--color-parrafos);
 }
-
+.texto-resp {
+  font-size: 16px;
+  
+}
+.texto-traduct{
+  font-size: 24px;
+}
 @media (max-width: 1439px) {
   .container {
     display: flex;
@@ -136,7 +170,7 @@ img {
   .container-result {
     margin: 67px 0 60px 0;
     width: 90%;
-    height: 133px;
+    height: 100%;
   }
 
   .container-init-traductor {
